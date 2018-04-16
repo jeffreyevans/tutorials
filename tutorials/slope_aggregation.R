@@ -81,10 +81,10 @@ par(mfrow=c(2,2))
   plot(rad.mean, main="Focal mean (5x5) sine(F(x,y)) ratio")
   
 #### Create some polygons  
-e <- as(extent(slp.rad), "SpatialPolygons")
-  e <- SpatialPolygonsDataFrame(e, data.frame(ID=1))  
+e <- rgeos::gBuffer(as(extent(slp.rad), "SpatialPolygons"), width = -40000) 
+  e <- SpatialPolygonsDataFrame(e, data.frame(ID=1), match.ID = FALSE)  
     hex <- spatialEco::hexagons(e, 40000)  
-  hex <- hex[c(13,33),]  
+  hex <- hex[c(3,19),]   
  
 plot(slp.rad)
   plot(hex,add=TRUE)
